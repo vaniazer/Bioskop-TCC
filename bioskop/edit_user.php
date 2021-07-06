@@ -8,7 +8,7 @@ $dbo = new db();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Membuat Halaman Web Dinamis Dengan PHP | www.malasngoding.com</title>
+    <title>Edit User</title>
     <!-- menghubungkan dengan file css -->
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

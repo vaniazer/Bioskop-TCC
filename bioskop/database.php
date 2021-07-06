@@ -3,9 +3,9 @@
  * 
  */
 class database{
-	var $hostname = "localhost";
-	var $username = "root";
-	var $password = "";
+	var $hostname = "bioskop_db";
+	var $username = "vaniazer";
+	var $password = "vania";
 	var $database = "bioskop";								//nama database
 	
 	function tampil_data(){
@@ -15,7 +15,7 @@ class database{
 	        die('maaf koneksi gagal :'. $connect->error);
     	}
     	else{
-    		$data = mysqli_query($conn,"select * from film"); //menjalankan perintah didatabase musik
+    		$data = mysqli_query($conn,"select * from film"); //menjalankan perintah didatabase 
 	        $hasil = null;
 	        while($d = mysqli_fetch_array($data)){	//Pengambilan data di mysql
 	            $hasil[] = $d;						//ditempatkan di $hasil dalam bentuk array 
@@ -26,7 +26,7 @@ class database{
 
      function input($nama,$sutradara,$durasi,$tanggal,$waktu){
         $conn = mysqli_connect($this->hostname, $this->username, $this->password, $this->database);
-        mysqli_query($conn,"insert into film values('','$nama','$sutradara','$durasi','$tanggal','$waktu')");	//menjalankan perintah simpan pada musik
+        mysqli_query($conn,"insert into film (`nama`, `sutradara`, `durasi`, `tanggal`, `waktu`) values($nama','$sutradara','$durasi','$tanggal','$waktu')");	//menjalankan perintah simpan pada 
     }   
 
     function edit($id_film){
@@ -47,7 +47,7 @@ class database{
 
      function hapus($id_film){
         $conn = mysqli_connect($this->hostname, $this->username, $this->password, $this->database);
-        mysqli_query($conn,"delete from film where id_film='$id_film'");	//melakukan hapus data berdasarkan id pada musik
+        mysqli_query($conn,"delete from film where id_film='$id_film'");	//melakukan hapus data berdasarkan id pada 
     }
 
     function cari($search){

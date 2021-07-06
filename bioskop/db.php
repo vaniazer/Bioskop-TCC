@@ -3,9 +3,9 @@
  * 
  */
 class db{
-	var $hostname = "localhost";
-	var $username = "root";
-	var $password = "";
+	var $hostname = "penonton_db";
+	var $username = "vaniazer";
+	var $password = "vania";
 	var $database = "penonton";								//nama database
 	
 	function tampil_data(){
@@ -15,7 +15,7 @@ class db{
 	        die('maaf koneksi gagal :'. $connect->error);
     	}
     	else{
-    		$data = mysqli_query($conn,"select * from user"); //menjalankan perintah didatabase musik
+    		$data = mysqli_query($conn,"select * from user"); //menjalankan perintah didatabase 
 	        $hasil = null;
 	        while($d = mysqli_fetch_array($data)){	//Pengambilan data di mysql
 	            $hasil[] = $d;						//ditempatkan di $hasil dalam bentuk array 
@@ -26,7 +26,7 @@ class db{
 
      function input($nama_user,$alamat,$telepon){
         $conn = mysqli_connect($this->hostname, $this->username, $this->password, $this->database);
-        mysqli_query($conn,"insert into user values('','$nama_user','$alamat','$telepon')");	
+        mysqli_query($conn,"insert into user (`nama_user`, `alamat`, `telepon`) values($nama_user','$alamat','$telepon')");	
     }   
 
     function edit($id_user){
