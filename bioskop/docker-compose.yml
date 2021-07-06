@@ -1,0 +1,49 @@
+version: "3.9"
+services:
+  bioskop_db:
+    container_name: bioskop_db
+    image: mysql:8.0
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - bioskop_volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: vania
+      MYSQL_DATABASE: bioskop
+      MYSQL_USER: vaniazer
+      MYSQL_PASSWORD: vania
+    networks:
+      - film_network
+
+penonton_db:
+    container_name: penonton_db
+    image: mysql:8.0
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - penonton_volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: vania
+      MYSQL_DATABASE: penonton
+      MYSQL_USER: vaniazer
+      MYSQL_PASSWORD: vania
+    networks:
+      - film_network
+
+<container_app>:
+    container_name: film_app
+    build: .
+    restart: always
+    privileged: true
+    depends_on:
+      - bioskop_db
+      - penonton_db
+    networks:
+      - film_network
+    ports:
+      - "8090:80"
+networks:
+  film_network:
+volumes:
+  bioskop_volume:
+  penonton_volume:
